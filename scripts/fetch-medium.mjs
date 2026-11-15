@@ -109,7 +109,7 @@ async function main() {
     const text = stripTags(body);
     const excerpt = text.length > 220 ? text.slice(0, 217).replace(/\s+\S*$/, "") + "..." : text;
     const imgMatch = body.match(/<img[^>]+src="([^"]+)"/i);
-    const image = imgMatch ? imgMatch[1] : SITE + "/images/rachael-sweater.jpg";
+    const image = imgMatch ? imgMatch[1] : SITE + "/images/rachael-hands.jpg";
     const file = "essay-" + slug + ".html";
 
     let bodyHtml = body;

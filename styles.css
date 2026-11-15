@@ -184,8 +184,8 @@ h3.script { font-size: clamp(2.6rem, 5vw, 3.6rem); transform: rotate(-2deg); mar
 .hero { text-align: center; padding-top: 3.5rem; }
 .hero .welcome { margin-bottom: 0; }
 .hero h1 { margin: 0.2rem 0 1.5rem; }
-.hero .polaroid { width: min(520px, 92%); margin: 0 auto; --tilt: -1.8deg; }
-.hero .polaroid img { aspect-ratio: 1200 / 1073; }
+.hero .polaroid { width: min(430px, 88%); margin: 0 auto; --tilt: -1.8deg; }
+.hero .polaroid img { aspect-ratio: 4 / 5; }
 .hero .tagline { margin-top: 2.6rem; }
 
 /* Two column layouts */
@@ -197,11 +197,19 @@ h3.script { font-size: clamp(2.6rem, 5vw, 3.6rem); transform: rotate(-2deg); mar
 }
 .split.flip { grid-template-columns: 1fr 1.1fr; }
 
-.photo-stack { position: relative; min-height: 560px; }
-.photo-stack .polaroid { position: absolute; width: 52%; }
-.photo-stack .one { top: 0; left: 0; --tilt: -5deg; }
-.photo-stack .two { bottom: 0; right: 2%; --tilt: -7deg; }
-.photo-stack .one img, .photo-stack .two img { aspect-ratio: 1 / 1; }
+.photo-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem 1.4rem;
+  padding: 0.5rem;
+}
+.photo-stack .polaroid { padding: 0.7rem 0.7rem 2.2rem; margin: 0; width: 100%; }
+.photo-stack .polaroid::before { width: 70px; height: 20px; top: -10px; }
+.photo-stack img { aspect-ratio: 1 / 1; }
+.photo-stack .p1 { --tilt: -4deg; }
+.photo-stack .p2 { --tilt: 3deg; margin-top: 1.5rem; }
+.photo-stack .p3 { --tilt: 2.5deg; margin-top: -0.5rem; }
+.photo-stack .p4 { --tilt: -3deg; margin-top: 1rem; }
 
 /* Cards */
 .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; }
@@ -378,8 +386,6 @@ h3.script { font-size: clamp(2.6rem, 5vw, 3.6rem); transform: rotate(-2deg); mar
   .split, .split.flip { grid-template-columns: 1fr; gap: 3rem; }
   .cards, .serve { grid-template-columns: 1fr; }
   .talks { grid-template-columns: 1fr; }
-  .photo-stack { min-height: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  .photo-stack .polaroid { position: relative; width: 100%; inset: auto; }
   .card, .card:nth-child(odd), .card:nth-child(2) { transform: none; }
   .section { padding: 4rem 1.25rem; }
   .menu-toggle { display: block; }

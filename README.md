@@ -8,6 +8,7 @@ This is the personal website for Rev. Rachael Dilling: minister, hospice chaplai
 - `about.html` has the bio, How I Serve, and credentials
 - `writing.html` gathers the essays into collections, each built around a question
 - `watch.html` lists the YouTube talks
+- `build.html` describes website, online store, and automation services for spiritual communities
 - `contact.html` handles speaking and workshop inquiries by email
 - `404.html` is the "page not found" page
 

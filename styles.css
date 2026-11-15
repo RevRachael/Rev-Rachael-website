@@ -440,3 +440,8 @@ h3.script { font-size: clamp(2.6rem, 5vw, 3.6rem); transform: rotate(-2deg); mar
 .recent-list a:hover { text-decoration: underline; }
 .recent-list .label { margin: 0.3rem 0 0.4rem; color: var(--ink); }
 .recent-list p { margin: 0; font-size: 1.05rem; }
+
+/* Serve columns on a red section */
+.serve.on-red h3 { color: var(--cream); }
+.serve.on-red p { color: var(--cream); }
+.section.cream .lead a, .section.cream p a { color: var(--red); }

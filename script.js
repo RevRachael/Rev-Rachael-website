@@ -24,9 +24,9 @@
   }
 
   function videoButton(t) {
-    return '<a class="video" href="' + esc(ytUrl(t)) + '"' +
+    return '<a class="video" href="' + esc(ytUrl(t)) + '" data-id="' + esc(t.id) + '"' + (t.start ? ' data-start="' + esc(t.start) + '"' : "") +
       ' style="background-image:url(https://i.ytimg.com/vi/' + esc(t.id) + '/hqdefault.jpg)"' +
-      ' aria-label="Watch on YouTube: ' + esc(t.title) + ', ' + esc(t.date) + '"><span class="play" aria-hidden="true"></span></a>';
+      ' aria-label="Play video: ' + esc(t.title) + ', ' + esc(t.date) + '"><span class="play" aria-hidden="true"></span></a>';
   }
 
   function talkHTML(t) {
@@ -34,7 +34,7 @@
       "<h3>" + esc(t.title) + "</h3>" +
       '<p class="label">' + esc(t.date) + "</p>" +
       "<p>" + esc(t.blurb) + "</p>" +
-      '<p class="links"><a href="' + esc(ytUrl(t)) + '">Watch the full talk on YouTube</a></p>' +
+      '<p class="links"><a href="' + esc(ytUrl(t)) + '">Open on YouTube</a></p>' +
       "</article>";
   }
 
@@ -83,6 +83,27 @@
     talkList.innerHTML = talks.map(function (t) {
       return '<div id="' + esc(t.id) + '">' + talkHTML(t) + "</div>";
     }).join("");
+  }
+
+  // Play videos right on the page. Inside a preview frame that blocks embedded
+  // video, the tile simply works as a link to YouTube instead.
+  var canEmbed = (function () { try { return window.self === window.top; } catch (e) { return false; } })();
+  if (canEmbed) {
+    document.addEventListener("click", function (ev) {
+      var tile = ev.target.closest ? ev.target.closest("a.video") : null;
+      if (!tile || tile.classList.contains("playing")) return;
+      ev.preventDefault();
+      var id = tile.getAttribute("data-id");
+      var start = tile.getAttribute("data-start");
+      var frame = document.createElement("iframe");
+      frame.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) + "?autoplay=1&rel=0&modestbranding=1" + (start ? "&start=" + encodeURIComponent(start) : "");
+      frame.title = tile.getAttribute("aria-label") || "YouTube video";
+      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      frame.allowFullscreen = true;
+      tile.classList.add("playing");
+      tile.removeAttribute("href");
+      tile.appendChild(frame);
+    });
   }
 
   // Footer year

@@ -294,6 +294,9 @@ h3.script { font-size: clamp(2.6rem, 5vw, 3.6rem); transform: rotate(-2deg); mar
   transition: background 0.2s;
 }
 .video:hover::after, .video:focus-visible::after { background: rgba(60, 8, 8, 0.05); }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 3; }
+.video.playing { cursor: default; }
+.video.playing .play { display: none; }
 .video .play {
   position: absolute; z-index: 2;
   top: 50%; left: 50%;

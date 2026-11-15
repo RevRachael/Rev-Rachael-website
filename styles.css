@@ -445,3 +445,16 @@ h3.script { font-size: clamp(2.6rem, 5vw, 3.6rem); transform: rotate(-2deg); mar
 .serve.on-red h3 { color: var(--cream); }
 .serve.on-red p { color: var(--cream); }
 .section.cream .lead a, .section.cream p a { color: var(--red); }
+
+/* Packages */
+.packages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; text-align: left; align-items: start; }
+.package { position: relative; }
+.package h3 { margin-bottom: 0.3rem; }
+.package .price { font-family: var(--label); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.9rem; color: var(--red) !important; margin: 0 0 1rem; }
+.package ul { margin: 0; padding-left: 1.1rem; }
+.package li { color: var(--ink); font-size: 1.02rem; margin: 0.35rem 0; }
+.package.featured { outline-width: 2px; transform: rotate(0deg) scale(1.03); }
+.package .badge { position: absolute; top: -0.9rem; left: 50%; transform: translateX(-50%); background: var(--cream); color: var(--red) !important; font-family: var(--label); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.7rem; padding: 0.35rem 0.8rem; margin: 0; border: 1px solid var(--red); white-space: nowrap; }
+.fine { font-size: 1rem; opacity: 0.9; margin-top: 2rem; }
+@media (max-width: 1100px) { .packages { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .packages { grid-template-columns: 1fr; } .package.featured { transform: none; } }

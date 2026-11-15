@@ -63,11 +63,17 @@ window.ESSAYS = [
 
 window.TALKS = [
   {
+    id: "1O0CvzB_E40",
+    title: "Sunday Service, CSL St. George",
+    date: "June 22, 2025",
+    blurb: "A Sunday message given in person at Centers for Spiritual Living St. George.",
+    featured: true
+  },
+  {
     id: "fCohEObslcY",
     title: "A talk in Pasadena",
     date: "July 7, 2024",
-    blurb: "A message I gave in Pasadena.",
-    featured: true
+    blurb: "A message I gave in Pasadena."
   },
   {
     id: "CRN139zuG4U",
@@ -79,12 +85,6 @@ window.TALKS = [
     id: "m_nVsDGM1xo",
     title: "Sunday Celebration, CSL St. George",
     date: "August 2025",
-    blurb: "A Sunday message given in person at Centers for Spiritual Living St. George."
-  },
-  {
-    id: "1O0CvzB_E40",
-    title: "Sunday Service, CSL St. George",
-    date: "June 22, 2025",
     blurb: "A Sunday message given in person at Centers for Spiritual Living St. George."
   },
   {

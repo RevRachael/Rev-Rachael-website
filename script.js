@@ -17,6 +17,17 @@
 
   var essays = window.ESSAYS || [];
   var talks = window.TALKS || [];
+  var essayPages = window.ESSAY_PAGES || [];
+  function mediumId(url) {
+    var m = String(url).split("?")[0].match(/-([0-9a-f]{8,16})$/);
+    return m ? m[1] : null;
+  }
+  // Use the essay's page on this site when it has been imported, otherwise Medium
+  function essayLink(e) {
+    var id = mediumId(e.url);
+    var local = essayPages.filter(function (p) { return p.id === id; })[0];
+    return local ? { href: local.page, label: "Read the essay" } : { href: e.url, label: "Read on Medium" };
+  }
   function talkById(id) { return talks.filter(function (t) { return t.id === id; })[0]; }
 
   function ytUrl(t) {
@@ -42,9 +53,10 @@
   var featured = document.getElementById("featured-essays");
   if (featured) {
     featured.innerHTML = essays.filter(function (e) { return e.featured; }).slice(0, 3).map(function (e) {
-      return '<article class="card cream-card"><h3><a href="' + esc(e.url) + '">' + esc(e.title) + "</a></h3>" +
+      var l = essayLink(e);
+      return '<article class="card cream-card"><h3><a href="' + esc(l.href) + '">' + esc(e.title) + "</a></h3>" +
         "<p>" + esc(e.intro) + "</p>" +
-        '<a class="more" href="' + esc(e.url) + '">Read on Medium</a></article>';
+        '<a class="more" href="' + esc(l.href) + '">' + esc(l.label) + "</a></article>";
     }).join("");
   }
 
@@ -68,13 +80,25 @@
       return '<section class="collection"><h2 class="question">' + esc(q) + "</h2>" +
         groups[q].map(function (e) {
           var rel = e.related ? talkById(e.related) : null;
-          return '<article class="essay"><h3><a href="' + esc(e.url) + '">' + esc(e.title) + "</a></h3>" +
+          var l = essayLink(e);
+          return '<article class="essay"><h3><a href="' + esc(l.href) + '">' + esc(e.title) + "</a></h3>" +
             "<p>" + esc(e.intro) + "</p>" +
-            '<p class="links"><a href="' + esc(e.url) + '">Read on Medium</a>' +
+            '<p class="links"><a href="' + esc(l.href) + '">' + esc(l.label) + "</a>" +
             (rel ? '<a href="watch.html#' + esc(rel.id) + '">Related talk</a>' : "") +
             "</p></article>";
         }).join("") + "</section>";
     }).join("");
+  }
+
+  // Writing page: every essay imported from Medium, newest first
+  var recent = document.getElementById("recent-essays");
+  if (recent && essayPages.length) {
+    recent.innerHTML = '<h2 class="script center">Recent essays</h2><ul class="recent-list">' +
+      essayPages.map(function (p) {
+        var d = new Date(p.date + "T12:00:00");
+        var when = isNaN(d) ? "" : d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+        return '<li><a href="' + esc(p.page) + '">' + esc(p.title) + '</a><p class="label">' + esc(when) + "</p><p>" + esc(p.excerpt) + "</p></li>";
+      }).join("") + "</ul>";
   }
 
   // Watch page: all talks

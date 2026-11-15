@@ -13,9 +13,17 @@ This is the personal website for Rev. Rachael Dilling: minister, hospice chaplai
 
 Styles live in `styles.css`. Photos are in `images`, and the fonts are stored in `fonts`, so they always load.
 
-## Adding a new essay
+## Essays from Medium
 
-Open `content.js` on GitHub and click the pencil icon to edit it. Find the list called `window.ESSAYS`, copy one of the existing entries (everything from its opening curly brace to its closing curly brace, plus the comma after it), and paste the copy right below. Change the title so it matches Medium exactly, paste the Medium link into `url`, and write a one or two sentence `intro` in your own voice. For `question`, either reuse one of the questions already there or write a new one, and the Writing page will create a new collection for it on its own. To show the essay on the Home page, add `featured: true` and remove `featured: true` from an older one, so three stay featured. Click Commit changes when you're done.
+Every Monday morning, a GitHub Action (`.github/workflows/medium.yml`) reads the Medium feed for @rndilling and copies each essay onto this site as its own page, named `essay-` followed by the essay's title. It also updates `essays-index.js`, which the Home and Writing pages read. When an essay has a page here, its links open that page instead of sending readers to Medium. Every essay page links back to Medium and tells search engines that Medium is the original source, so the two copies never compete.
+
+Medium's feed only lists the ten most recent essays. Once an essay has been copied here it stays, so the collection grows week by week. Essays older than the feed reaches keep linking to Medium.
+
+To pull new essays right away instead of waiting for Monday, open the Actions tab on GitHub, choose Import essays from Medium, and click Run workflow.
+
+## Featuring an essay on the Home and Writing pages
+
+Imported essays appear on the Writing page under Recent essays on their own. To also feature one in a themed collection or on the Home page, open `content.js` on GitHub and click the pencil icon to edit it. Find the list called `window.ESSAYS`, copy one of the existing entries (everything from its opening curly brace to its closing curly brace, plus the comma after it), and paste the copy right below. Change the title so it matches Medium exactly, paste the Medium link into `url`, and write a one or two sentence `intro` in your own voice. For `question`, either reuse one of the questions already there or write a new one, and the Writing page will create a new collection for it on its own. To show the essay on the Home page, add `featured: true` and remove `featured: true` from an older one, so three stay featured. Click Commit changes when you're done.
 
 ## Featuring a talk
 

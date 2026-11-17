@@ -456,5 +456,6 @@ h3.script { font-size: clamp(2.6rem, 5vw, 3.6rem); transform: rotate(-2deg); mar
 .package.featured { outline-width: 2px; transform: rotate(0deg) scale(1.03); }
 .package .badge { position: absolute; top: -0.9rem; left: 50%; transform: translateX(-50%); background: var(--cream); color: var(--red) !important; font-family: var(--label); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.7rem; padding: 0.35rem 0.8rem; margin: 0; border: 1px solid var(--red); white-space: nowrap; }
 .fine { font-size: 1rem; opacity: 0.9; margin-top: 2rem; }
+.fine a { color: inherit; text-decoration: underline; text-underline-offset: 3px; word-break: break-word; }
 @media (max-width: 1100px) { .packages { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .packages { grid-template-columns: 1fr; } .package.featured { transform: none; } }
